@@ -14,17 +14,21 @@ int n;
 
 void quick_sort(vector<int>& input, int Left, int Right){
 	if (Left >= Right) return;
-	int pivot = Right;
-	int low = Left, high = Right - 1;
+
+	int pivot = input[Left + rand() % (Right - Left + 1)];
+	//int pivot = input[(Left + Right) / 2];
+	//int pivot = input[Left];
+	//int pivot = input[Right];
+	int low = Left, high = Right;
 	while (low < high){
-		while (input[low] <= input[pivot] && low < high) low++;
-		while (input[high] >= input[pivot] && low < high) high--;
+		while (input[low] < pivot) ++low;
+		while (input[high] > pivot) --high;
+		if (low > high) break;
 		swap(input[low], input[high]);
+		++low, --high;
 	}
-	if (input[pivot] <= input[high]) swap(input[pivot], input[high]);
-	else low++;
-	quick_sort(input, Left, low - 1);
-	quick_sort(input, high + 1, Right);
+	quick_sort(input, Left, high);
+	quick_sort(input, low, Right);
 }
 
 int main(){
