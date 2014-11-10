@@ -15,7 +15,10 @@ int n;
 void quick_sort(vector<int>& input, int Left, int Right){
 	if (Left >= Right) return;
 
+	//random pivot
 	int pivot = input[Left + rand() % (Right - Left + 1)];
+
+	//pivot selection
 	//int pivot = input[(Left + Right) / 2];
 	//int pivot = input[Left];
 	//int pivot = input[Right];
